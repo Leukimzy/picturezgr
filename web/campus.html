@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>校园足迹 - 校园探索者</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background: #f0f4f8;
+            overflow-x: hidden;
+        }
+        /* ---- 漂浮气泡背景 ---- */
+        #bubble-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        /* ---- 页面骨架 ---- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        .header h1 {
+            color: #26A69A;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .header p { color: #666; font-size: 1.1em; }
+
+        /* 上传区域 */
+        .upload-bar {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .upload-bar input[type=file] { display: none; }
+        .upload-btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background: #26A69A;
+            color: #fff;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background .3s;
+        }
+        .upload-btn:hover { background: #00796B; }
+
+        /* 足迹卡片网格 */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            background: #e0e0e0;
+        }
+        .card-body {
+            padding: 20px;
+            flex: 1;
+        }
+        .card h3 {
+            color: #26A69A;
+            margin-bottom: 8px;
+        }
+        .card p {
+            color: #666;
+            line-height: 1.6;
+            font-size: .95em;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 12px 30px;
+            background: #26A69A;
+            color: #fff;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: background .3s;
+        }
+        .back-link:hover { background: #00796B; }
+    </style>
+</head>
+<body>
+<canvas id="bubble-canvas"></canvas>
+
+<div class="container">
+    <div class="header">
+        <h1>校园足迹</h1>
+        <p>记录每一刻精彩瞬间</p>
+    </div>
+
+    <!-- 本地上传 -->
+    <div class="upload-bar">
+        <label for="imgUpload" class="upload-btn">📷 上传新照片</label>
+        <input type="file" id="imgUpload" accept="image/*" multiple>
+    </div>
+
+    <!-- 足迹网格 -->
+    <div class="grid" id="footGrid">
+        <!-- 默认四张卡片（文字内容来自你提供的素材） -->
+        <div class="card">
+            <img src="" alt="教学楼">
+            <div class="card-body">
+                <h3>教学楼</h3>
+                <p>每天上课和学习的主要场所，在这里度过了大部分的学习时光。</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="" alt="图书馆">
+            <div class="card-body">
+                <h3>图书馆</h3>
+                <p>安静的学习环境，丰富的图书资源，是自习和查阅资料的好地方。</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="" alt="乒乓球馆">
+            <div class="card-body">
+                <h3>乒乓球馆</h3>
+                <p>参加乒乓球社活动，锻炼身体，放松心情的场所。</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="" alt="食堂">
+            <div class="card-body">
+                <h3>食堂</h3>
+                <p>日常用餐的地方，与同学们交流的场所。</p>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align:center;">
+        <a href="../index.html" class="back-link">← 返回首页</a>
+    </div>
+</div>
+
+<script>
+/* ------------ 漂浮气泡背景 ------------ */
+class BubbleBackground {
+    constructor() {
+        this.canvas = document.getElementById('bubble-canvas');
+        this.ctx = this.canvas.getContext('2d');
+        this.bubbles = [];
+        this.init();
+    }
+    init() {
+        this.resizeCanvas();
+        this.createBubbles();
+        this.animate();
+        window.addEventListener('resize', () => this.resizeCanvas());
+    }
+    resizeCanvas() {
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
+    }
+    createBubbles() {
+        const count = 60;
+        for (let i = 0; i < count; i++) {
+            this.bubbles.push({
+                x: Math.random() * this.canvas.width,
+                y: Math.random() * this.canvas.height,
+                r: Math.random() * 25 + 8,
+                speed: Math.random() * 1.2 + 0.3,
+                color: `hsl(${Math.random() * 240 + 180}, 70%, 60%)`,
+                angle: Math.random() * Math.PI * 2
+            });
+        }
+    }
+    animate() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.bubbles.forEach(b => {
+            b.y -= b.speed;
+            b.x += Math.sin(b.angle += 0.02) * 0.6;
+            if (b.y + b.r < 0) b.y = this.canvas.height + b.r;
+            this.ctx.beginPath();
+            this.ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+            this.ctx.fillStyle = b.color;
+            this.ctx.fill();
+            this.ctx.strokeStyle = 'rgba(255,255,255,0.4)';
+            this.ctx.stroke();
+        });
+        requestAnimationFrame(() => this.animate());
+    }
+}
+new BubbleBackground();
+
+/* ------------ 本地上传预览 ------------ */
+document.getElementById('imgUpload').addEventListener('change', e => {
+    const files = Array.from(e.target.files);
+    files.forEach(file => {
+        if (!file.type.startsWith('image/')) return;
+        const reader = new FileReader();
+        reader.onload = ev => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <img src="${ev.target.result}" alt="用户上传">
+                <div class="card-body">
+                    <h3>我的足迹</h3>
+                    <p>刚刚上传的记忆瞬间。</p>
+                </div>`;
+            document.getElementById('footGrid').appendChild(card);
+        };
+        reader.readAsDataURL(file);
+    });
+});
+</script>
+</body>
+</html>

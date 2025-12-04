@@ -1,0 +1,354 @@
+<!-- 第二个网页：web/study.html -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>课程学习 - 校园探索者</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background: #f8f9fa;
+            overflow-x: hidden;
+        }
+        
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: #ffffff;
+            background-image: 
+                linear-gradient(rgba(38, 166, 154, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(38, 166, 154, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+        
+        #particles-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            color: #26A69A;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+        
+        .course-section {
+            background: rgba(255, 255, 255, 0.95);
+            margin-bottom: 30px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-left: 5px solid #26A69A;
+        }
+        
+        .course-section h2 {
+            color: #26A69A;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        
+        .course-content {
+            margin-bottom: 20px;
+        }
+        
+        .course-content h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+        
+        .course-content p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .code-block {
+            background: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .formula {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            text-align: center;
+            font-family: 'Times New Roman', serif;
+            font-size: 1.1em;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 30px;
+            background: #26A69A;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: background-color 0.3s;
+            font-weight: 500;
+        }
+        
+        .back-link:hover {
+            background: #00796B;
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas-container">
+        <canvas id="particles-canvas"></canvas>
+    </div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>课程学习</h1>
+            <p>探索计算机科学的奥秘，夯实数学基础</p>
+        </div>
+        
+        <div class="course-section">
+            <h2>💻 C语言程序设计</h2>
+            <div class="course-content">
+                <h3>学习内容：</h3>
+                <p>基础语法、数据类型、流程控制、函数、数组、指针、结构体、文件操作</p>
+                
+                <h3>学习心得：</h3>
+                <p>通过C语言学习，掌握了编程的基本思维方法。从简单的输入输出到复杂的数据处理，逐步建立起编程能力。最近学习了排序算法，理解了各种排序的工作原理和实现方式。</p>
+                
+                <div class="code-block>
+// 选择排序算法实现
+void selectionSort(int arr[], int n) {
+    int i, j, minIndex, temp;
+    for (i = 0; i < n-1; i++) {
+        minIndex = i;
+        for (j = i+1; j < n; j++) {
+            if (arr[j] < arr[minIndex]) {
+                minIndex = j;
+            }
+        }
+        temp = arr[i];
+        arr[i] = arr[minIndex];
+        arr[minIndex] = temp;
+    }
+}
+
+// 测试代码
+int main() {
+    int numbers[] = {64, 25, 12, 22, 11};
+    int n = sizeof(numbers)/sizeof(numbers[0]);
+    selectionSort(numbers, n);
+    return 0;
+}
+                </div>
+            </div>
+        </div>
+        
+        <div class="course-section">
+            <h2>📐 微积分</h2>
+            <div class="course-content">
+                <h3>学习内容：</h3>
+                <p>函数与极限、导数与微分、中值定理、积分学、多元函数微分</p>
+                
+                <h3>学习心得：</h3>
+                <p>微积分是理工科的重要基础课程，通过学习理解了变化率和累积量的数学表达。导数在优化问题中的应用让我看到了数学在实际问题中的价值，积分则帮助理解面积、体积等几何概念。</p>
+                
+                <div class="formula">
+                    <strong>导数公式：</strong><br>
+                    f'(x) = lim<sub>Δx→0</sub> [f(x+Δx) - f(x)] / Δx
+                </div>
+                
+                <div class="formula">
+                    <strong>基本积分：</strong><br>
+                    ∫x<sup>n</sup>dx = x<sup>n+1</sup>/(n+1) + C (n≠-1)
+                </div>
+                
+                <p><strong>换元积分法：</strong>通过变量替换简化积分计算</p>
+            </div>
+        </div>
+        
+        <div class="course-section">
+            <h2>📊 线性代数</h2>
+            <div class="course-content">
+                <h3>学习内容：</h3>
+                <p>矩阵运算、行列式、向量空间、线性方程组、特征值与特征向量</p>
+                
+                <h3>学习心得：</h3>
+                <p>线性代数为计算机图形学、机器学习等领域奠定基础。矩阵运算在数据处理中广泛应用，向量空间的概念帮助理解高维数据的处理方式。通过高斯消元法求解线性方程组，体会到了数学方法的系统性。</p>
+                
+                <div class="formula">
+                    <strong>矩阵乘法：</strong><br>
+                    C = A × B<br>
+                    其中 c<sub>ij</sub> = Σ<sub>k</sub>(a<sub>ik</sub> × b<sub>kj</sub>)
+                </div>
+                
+                <div class="formula">
+                    <strong>特征方程：</strong><br>
+                    |A - λI| = 0<br>
+                    用于求解特征值 λ
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center;">
+            <a href="../index.html" class="back-link">← 返回首页</a>
+        </div>
+    </div>
+    
+<script>
+/* ---------- 弹性碰撞粒子系统（无重力 + 随机不相等颜色） ---------- */
+ class BouncingParticles {
+   constructor() {
+     this.canvas = document.getElementById('particles-canvas');
+     this.ctx   = this.canvas.getContext('2d');
+     this.particles = [];
+     this.init();
+   }
+
+  init() {
+    this.resizeCanvas();
+    this.createParticles();
+    this.animate();
+  }
+
+  resizeCanvas() {
+    this.canvas.width  = window.innerWidth;
+    this.canvas.height = window.innerHeight;
+  }
+
+  /* 生成随机 HSL 颜色 */
+  randomColor() {
+    return `hsl(${Math.random() * 360 | 0}, 85%, 75%)`;
+  }
+
+  createParticles() {
+    const count = 50;
+    this.particles = [];
+    for (let i = 0; i < count; i++) {
+      this.particles.push({
+        x: Math.random() * this.canvas.width,
+        y: Math.random() * this.canvas.height,
+        vx: (Math.random() - 0.5) * 5,   // 无重力，匀速
+        vy: (Math.random() - 0.5) * 5,
+        radius: Math.random() * 10 + 5,
+        color: this.randomColor()
+      });
+    }
+    /* 保证初始颜色互不相等 */
+    for (let i = 1; i < this.particles.length; i++) {
+      while (this.particles[i].color === this.particles[i - 1].color) {
+        this.particles[i].color = this.randomColor();
+      }
+    }
+  }
+
+  /* 碰撞检测 + 颜色去重 */
+  checkCollision(p1, p2) {
+    const dx = p2.x - p1.x, dy = p2.y - p1.y, dist = Math.hypot(dx, dy);
+    if (dist < p1.radius + p2.radius) {
+      /* 弹性碰撞速度交换（一维弹性公式简化） */
+      const angle = Math.atan2(dy, dx), sin = Math.sin(angle), cos = Math.cos(angle);
+      const v1 = { x: p1.vx * cos + p1.vy * sin, y: p1.vy * cos - p1.vx * sin };
+      const v2 = { x: p2.vx * cos + p2.vy * sin, y: p2.vy * cos - p2.vx * sin };
+      const newV1 = v2.x, newV2 = v1.x;           // 质量相等直接交换
+      p1.vx = newV1 * cos - v1.y * sin; p1.vy = v1.y * cos + newV1 * sin;
+      p2.vx = newV2 * cos - v2.y * sin; p2.vy = v2.y * cos + newV2 * sin;
+
+      /* 颜色去重：若相同则重新随机，直到不同 */
+      if (p1.color === p2.color) {
+        p1.color = this.randomColor();
+        while (p1.color === p2.color) p1.color = this.randomColor();
+      }
+
+      /* 分离重叠 */
+      const overlap = p1.radius + p2.radius - dist;
+      const sx = dx / dist * overlap * 0.5, sy = dy / dist * overlap * 0.5;
+      p1.x -= sx; p1.y -= sy; p2.x += sx; p2.y += sy;
+    }
+  }
+
+  animate() {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    const p = this.particles;
+
+    /* 更新位置 + 边界反弹（无重力） */
+    for (const b of p) {
+      b.x += b.vx; b.y += b.vy;
+      if (b.x - b.radius < 0 || b.x + b.radius > this.canvas.width)  b.vx *= -1, b.x = Math.max(b.radius, Math.min(this.canvas.width - b.radius, b.x));
+      if (b.y - b.radius < 0 || b.y + b.radius > this.canvas.height) b.vy *= -1, b.y = Math.max(b.radius, Math.min(this.canvas.height - b.radius, b.y));
+    }
+
+    /* 两两碰撞检测 */
+    for (let i = 0; i < p.length; i++) {
+      for (let j = i + 1; j < p.length; j++) this.checkCollision(p[i], p[j]);
+    }
+
+    /* 绘制球体 */
+    for (const b of p) {
+      this.ctx.beginPath();
+      this.ctx.arc(b.x, b.y, b.radius, 0, Math.PI * 2);
+      this.ctx.fillStyle = b.color;
+      this.ctx.fill();
+      this.ctx.strokeStyle = 'rgba(255,255,255,0.4)';
+      this.ctx.lineWidth = 2;
+      this.ctx.stroke();
+    }
+
+    requestAnimationFrame(() => this.animate());
+  }
+}
+
+/* 启动 */
+window.addEventListener('DOMContentLoaded', () => {
+  new BouncingParticles();
+  window.addEventListener('resize', () => {
+    const c = document.getElementById('particles-canvas');
+    c.width = window.innerWidth; c.height = window.innerHeight;
+  });
+});
+</script>
+</body>
+</html>
