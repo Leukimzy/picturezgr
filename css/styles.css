@@ -1,3 +1,14 @@
+/* ===== 移动端补救 ===== */
+html { font-size: 62.5%; }          /* 1rem = 10px，方便计算 */
+body { font-size: 1.6rem; }         /* 16px 基准 */
+img, video { max-width: 100%; height: auto; } /* 图片不爆屏 */
+
+/* 断点：≤600px 手机 */
+@media (max-width: 600px) {
+  .container { width: 94%; padding: 2rem; }
+  .pic-card { margin: 1rem 0; }     /* 卡片上下间距 */
+  .float-title { font-size: 2.4rem; } /* 标题缩小 */
+}
 /* 通用样式重置 */
 * {
     margin: 0;
