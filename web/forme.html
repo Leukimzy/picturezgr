@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>关于我 - 华科吟游诗人</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- 开源毛笔字体 -->
+  <link rel="preconnect" href="https://fonts.gds.cn" />
+  <link href="https://fonts.gds.cn/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+    <div class="container">
+        <div class="header">
+            <h1>👤 关于我</h1>
+        </div>
+  <style>
+    /* ===== 创意背景：粒子 + 墨字 ===== */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+      background: #0d1117;          /* 深夜蓝黑 */
+      color: #e6edf3;
+      overflow-x: hidden;
+    }
+    #particle-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: -1;
+    }
+
+
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            color: #002147;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+
+    /* 内容卡片：一比一复刻原 forme 结构 */
+    .section-box {
+      background: rgba(255, 255, 255, 0.95);
+      margin-bottom: 30px;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      border-left: 5px solid #26A69A;
+    }
+    .section-box h2 {
+      color: #26A69A;
+      margin-bottom: 20px;
+      font-size: 1.8em;
+    }
+    .section-box p {
+      color: #666;
+      line-height: 1.8;
+      margin-bottom: 10px;
+    }
+    .skill-list,
+    .interest-list {
+      list-style: none;
+      padding-left: 20px;
+    }
+    .skill-list li,
+    .interest-list li {
+      color: #001F3F;
+
+      margin-bottom: 8px;
+      position: relative;
+      padding-left: 20px;
+    }
+    .skill-list li::before,
+    .interest-list li::before {
+      content: "•";
+      color: #26A69A;
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 12px 30px;
+      background: #26A69A;
+      color: white;
+      text-decoration: none;
+      border-radius: 25px;
+      transition: background-color 0.3s;
+      font-weight: 500;
+    }
+    .back-link:hover {
+      background: #00796B;
+    }
+  </style>
+</head>
+<body>
+  
+
+  <!-- 创意背景：粒子 -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- 内容区：一比一复刻 forme 结构 -->
+  <div class="container">
+   <div class="section-box">
+      <h2>🧑‍💻  自我介绍</h2>
+      <p>一名普通的华科大一新生，一个探索世界的吟游诗人。</p>
+      <ul class="skill-list">
+        <li>姓名：张高瑞</li>
+        <li>学校：华中科技大学</li>
+        <li>年级：大一</li>
+        <li>专业：计算机科学与技术</li>
+      </ul>
+    </div>
+
+    <div class="section-box">
+      <h2>🎯 学习方向</h2>
+      <p>目前主要学习计算机基础课程，为未来的专业发展打下坚实基础。</p>
+      <ul class="skill-list">
+        <li>⌨️编程语言：C语言、HTML/CSS</li>
+        <li>📐数学基础：微积分、线性代数</li>
+        <li>🖥️专业课程：计算机基础</li>
+        <li>⚙️工具软件：Dreamweaver、VS Code</li>
+      </ul>
+    </div>
+
+    <div class="section-box">
+      <h2>❤️ 兴趣爱好</h2>
+      <p>除了学习，还有很多丰富多彩的爱好让大学生活更加充实。</p>
+      <ul class="interest-list">
+        <li>🏐体育运动：跑步、排球</li>
+        <li>🪶社团活动：夏雨诗社成员、华为智能基座社团</li>
+        <li>🧮技术学习：微积分学习、编程实践</li>
+        <li>🎧休闲娱乐：书籍、音乐、电影</li>
+      </ul>
+    </div>
+
+    <div style="text-align:center;">
+      <a href="../index.html" class="back-link">← 返回首页</a>
+    </div>
+  </div>
+
+  <!-- 创意粒子背景脚本 -->
+  <script>
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particles = [];
+    for (let i = 0; i < 120; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 1.5,
+        vy: (Math.random() - 0.5) * 1.5,
+        r: Math.random() * 2.5 + 1,
+        color: `hsl(${160 + Math.random() * 80}, 70%, 60%)`
+      });
+    }
+
+    function animate() {
+      ctx.fillStyle = 'rgba(13, 17, 23, 0.08)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+      });
+      requestAnimationFrame(animate);
+    }
+    animate();
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+</body>
+</html>

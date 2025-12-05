@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>校园探索者 - 主页</title>
+    <title>华科吟游诗人 - 主页</title>
     <style>
         /* 保留原有样式，只添加跳转功能 */
         #canvas-container {
@@ -14,7 +14,7 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: linear-gradient(135deg, #26A69A 0%, #667eea 100%);
+            background: linear-gradient(135deg, #26A69A 0%, #66ccff 100%);
         }
         
         body {
@@ -26,6 +26,10 @@
         }
         
         .container {
+           /* 白色 + 浅色格子装饰（1px 淡灰线，30px 间距） */
+background: #ffffff
+          repeating-linear-gradient(0deg,  rgba(38,166,154,.05) 0px,  rgba(38,166,154,.05) 1px,  transparent 1px,  transparent 30px),
+          repeating-linear-gradient(90deg, rgba(38,166,154,.05) 0px,  rgba(38,166,154,.05) 1px,  transparent 1px,  transparent 30px);
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
@@ -33,7 +37,7 @@
         }
         
         header {
-            background: rgba(38, 166, 154, 0.95);
+
             color: white;
             padding: 40px 0;
             text-align: center;
@@ -197,10 +201,10 @@
     <nav>
         <div class="container">
             <ul>
-                <li><a href="index.html">首页</a></li>
-                <li><a href="web/study.html">课程学习</a></li>
-                <li><a href="web/club.html">社团活动</a></li>
-                <li><a href="web/campus.html">校园足迹</a></li>
+                <li><a href="index.html">🏠首页</a></li>
+                <li><a href="web/study.html">📚课程学习</a></li>
+                <li><a href="web/club.html">🎪社团活动</a></li>
+                <li><a href="web/campus.html">👣校园足迹</a></li>
                 <li><a href="web/forme.html">🎨关于作者</a></li>
             </ul>
         </div>
