@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>课程学习 - 吟游诗人</title>
@@ -151,13 +152,13 @@
         </div>
         
         <div class="course-section">
-            <h2>💻 C语言程序设计</h2>
+            <h2>⌨️ C语言程序设计</h2>
             <div class="course-content">
                 <h3>学习内容：</h3>
-                <p>基础语法、数据类型、流程控制、函数、数组、指针、结构体、文件操作</p>
+                <p>标识符与关键字、表达式与语句、分支结构、循环结构、跳转语句、一维数组、二维数组、字符数组与字符串</p>
                 
                 <h3>学习心得：</h3>
-                <p>通过C语言学习，掌握了编程的基本思维方法。从简单的输入输出到复杂的数据处理，逐步建立起编程能力。最近学习了排序算法，理解了各种排序的工作原理和实现方式。</p>
+                <p>通过C语言课程，我掌握编程基本思维与实现逻辑，从基础I/O应用逐步提升至复杂数据处理能力。近期系统学习排序算法，理解冒泡排序等常用算法核心原理，可通过C语言完成基础代码实现。</p>
                 
                 <div class="code-block>
 // 选择排序算法实现
@@ -188,25 +189,30 @@ int main() {
         </div>
         
         <div class="course-section">
-            <h2>📐 微积分</h2>
+            <h2>🧮 微积分</h2>
             <div class="course-content">
                 <h3>学习内容：</h3>
-                <p>函数与极限、导数与微分、中值定理、积分学、多元函数微分</p>
+                <p>函数与极限、导数与微分、中值定理、不定积分、定积分</p>
                 
                 <h3>学习心得：</h3>
-                <p>微积分是理工科的重要基础课程，通过学习理解了变化率和累积量的数学表达。导数在优化问题中的应用让我看到了数学在实际问题中的价值，积分则帮助理解面积、体积等几何概念。</p>
+                <p>微积分作为理工科核心基础课，我通过学习掌握了变化率与累积量的数学表征方式。导数在优化问题中的实践应用彰显数学实用价值，积分则助力深化对面积、体积等几何概念的理解。</p>
                 
-                <div class="formula">
-                    <strong>导数公式：</strong><br>
-                    f'(x) = lim<sub>Δx→0</sub> [f(x+Δx) - f(x)] / Δx
-                </div>
-                
-                <div class="formula">
-                    <strong>基本积分：</strong><br>
-                    ∫x<sup>n</sup>dx = x<sup>n+1</sup>/(n+1) + C (n≠-1)
-                </div>
-                
-                <p><strong>换元积分法：</strong>通过变量替换简化积分计算</p>
+          <div class="formula">
+    <strong>拉格朗日中值定理：</strong><br>
+    若函数 f(x) 在 [a,b] 连续、(a,b) 可导，则 ∃ξ∈(a,b)，使 f(b)-f(a) = f'(ξ)(b-a)
+</div>
+
+<div class="formula">
+    <strong>洛必达法则（0/0 型）：</strong><br>
+    若 limf(x)=0、limg(x)=0，且 lim[f'(x)/g'(x)] 存在，则 lim[f(x)/g(x)] = lim[f'(x)/g'(x)]
+</div>
+
+<div class="formula">
+    <strong>积分基本公式：</strong><br>
+    ∫f(x)dx = F(x) + C，其中 F'(x) = f(x)（F(x) 为 f(x) 的原函数）
+</div>
+
+
             </div>
         </div>
         
@@ -217,19 +223,24 @@ int main() {
                 <p>矩阵运算、行列式、向量空间、线性方程组、特征值与特征向量</p>
                 
                 <h3>学习心得：</h3>
-                <p>线性代数为计算机图形学、机器学习等领域奠定基础。矩阵运算在数据处理中广泛应用，向量空间的概念帮助理解高维数据的处理方式。通过高斯消元法求解线性方程组，体会到了数学方法的系统性。</p>
+                <p>线性代数是计算机图形学、机器学习等前沿领域的重要基石。矩阵运算作为核心工具，在数据处理场景中有着广泛应用；向量空间的理论体系，则为高维数据的处理逻辑提供了关键支撑。通过运用高斯消元法求解线性方程组，我切实感受到了数学方法的严谨性与系统性。</p>
                 
-                <div class="formula">
-                    <strong>矩阵乘法：</strong><br>
-                    C = A × B<br>
-                    其中 c<sub>ij</sub> = Σ<sub>k</sub>(a<sub>ik</sub> × b<sub>kj</sub>)
-                </div>
-                
-                <div class="formula">
-                    <strong>特征方程：</strong><br>
-                    |A - λI| = 0<br>
-                    用于求解特征值 λ
-                </div>
+              <div class="formula">
+    <strong>向量点积（内积）：</strong><br>
+    α · β = |α||β|cosθ = Σ<sub>i=1</sub><sup>n</sup> a<sub>i</sub>b<sub>i</sub><br>
+    （α、β 为 n 维向量，θ 为两向量夹角）
+</div>
+
+<div class="formula">
+    <strong>线性方程组矩阵形式：</strong><br>
+    Ax = b<br>
+    其中 A 为系数矩阵，x 为未知向量，b 为常数项向量
+</div>
+
+<div class="formula">
+    <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;行列式展开（二阶）：</strong><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|A| = | a₁₁  &nbsp;&nbsp; a₁₂ | = a₁₁a₂₂ - a₁₂a₂₁<br> | a₂₁  &nbsp;&nbsp; a₂₂ |
+</div>
             </div>
         </div>
         
